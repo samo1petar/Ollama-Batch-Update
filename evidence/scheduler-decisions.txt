@@ -1,0 +1,27 @@
+Ollama scheduler decisions, before and after the qwen35 blocklist patch.
+Extracted from the raw debug logs (OLLAMA_DEBUG=1). Machine: MacBook Pro,
+Apple M5 Pro, 24 GB unified memory. Model: qwen3.5:0.8b (arch qwen35).
+
+================================================================
+BEFORE -- stock ollama 0.32.5, OLLAMA_NUM_PARALLEL=4 explicitly set
+================================================================
+time=2026-09-15T11:27:53.784+02:00 level=WARN source=sched.go:510 msg="model architecture does not currently support parallel requests" architecture=qwen35
+srv    load_model: initializing, n_slots = 1, n_ctx_slot = 4096, kv_unified = 'false'
+time=2026-09-15T11:27:55.087+02:00 level=DEBUG source=sched.go:746 msg="finished setting up" runner.name=registry.ollama.ai/library/qwen3.5:0.8b runner.inference="[{ID:0 Library:Metal}]" runner.size="1.0 GiB" runner.vram="1.0 GiB" runner.parallel=1 runner.pid=50308 runner.model=/Users/petar/.ollama/models/blobs/sha256-afb707b6b8fac6e475acc42bc8380fc0b8d2e0e4190be5a969fbf62fcc897db5 runner.num_ctx=4096
+time=2026-09-15T11:27:55.212+02:00 level=DEBUG source=sched.go:395 msg="runner with non-zero duration has gone idle, adding timer" runner.name=registry.ollama.ai/library/qwen3.5:0.8b runner.inference="[{ID:0 Library:Metal}]" runner.size="1.0 GiB" runner.vram="1.0 GiB" runner.parallel=1 runner.pid=50308 runner.model=/Users/petar/.ollama/models/blobs/sha256-afb707b6b8fac6e475acc42bc8380fc0b8d2e0e4190be5a969fbf62fcc897db5 runner.num_ctx=4096 duration=10m0s
+
+  The env var was set to 4. The scheduler refused it and loaded one slot.
+
+================================================================
+CONTROL -- same stock server, qwen2.5:0.5b (arch qwen2, not blocklisted)
+================================================================
+srv    load_model: initializing, n_slots = 4, n_ctx_slot = 4096, kv_unified = 'false'
+  Four slots granted. Proves the server and the memory were never the problem.
+
+================================================================
+AFTER -- ollama v0.34.0 + patch/0001, OLLAMA_NUM_PARALLEL=8
+================================================================
+srv    load_model: initializing, n_slots = 8, n_ctx_slot = 4096, kv_unified = 'false'
+runner.parallel=8
+  blocklist warnings in the patched run: 0
+  panics / SIGABRT / SIGSEGV across all patched runs: 0

@@ -1,0 +1,156 @@
+{
+  "config": {
+    "url": "http://127.0.0.1:11435",
+    "token": "",
+    "model": "qwen3.5:0.8b",
+    "concurrency": [
+      1,
+      2,
+      4
+    ],
+    "num_ctx": 4096,
+    "num_predict": 512,
+    "prompt_words": 120,
+    "endpoint": "chat",
+    "stream": true,
+    "think": false,
+    "timeout": 600.0,
+    "settle": 3.0,
+    "ctx_sweep": "",
+    "json": "results/np1_gguf.json"
+  },
+  "server": {
+    "version": {
+      "version": "0.32.5"
+    },
+    "ps": {
+      "models": [
+        {
+          "name": "qwen3.5:0.8b",
+          "model": "qwen3.5:0.8b",
+          "size": 1108680374,
+          "digest": "f3817196d142eaf72ce79dfebe53dcb20bd21da87ce13e138a8f8e10a866b3a4",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "873.44M",
+            "quantization_level": "Q8_0"
+          },
+          "expires_at": "2026-09-15T11:36:36.703259+02:00",
+          "size_vram": 1108680374,
+          "context_length": 4096
+        }
+      ]
+    }
+  },
+  "runs": [
+    {
+      "num_ctx": 4096,
+      "ps": {
+        "models": [
+          {
+            "name": "qwen3.5:0.8b",
+            "model": "qwen3.5:0.8b",
+            "size": 1108680374,
+            "digest": "f3817196d142eaf72ce79dfebe53dcb20bd21da87ce13e138a8f8e10a866b3a4",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen35",
+              "families": [
+                "qwen35"
+              ],
+              "parameter_size": "873.44M",
+              "quantization_level": "Q8_0"
+            },
+            "expires_at": "2026-09-15T11:37:09.466271+02:00",
+            "size_vram": 1108680374,
+            "context_length": 4096
+          }
+        ]
+      },
+      "levels": [
+        {
+          "concurrency": 1,
+          "ok": 1,
+          "errors": [],
+          "wall_s": 3.0687604999984615,
+          "busy_total_s": 2.92917,
+          "overlap_raw": 0.9545124163327404,
+          "gen_tokens": 512,
+          "agg_decode_tps": 166.8426063227341,
+          "per_req_decode_tps": 180.1313058710492,
+          "mean_latency_s": 3.0687604999984615,
+          "p_eval_tokens": 512,
+          "eval_tokens_mean": 512,
+          "load_s_max": 0.134787208,
+          "hit_token_ceiling": true,
+          "ttft_min": 0.22652774999733083,
+          "ttft_max": 0.22652774999733083,
+          "ttft_spread_s": null,
+          "ttfts": [
+            0.22652774999733083
+          ]
+        },
+        {
+          "concurrency": 2,
+          "ok": 2,
+          "errors": [],
+          "wall_s": 6.032952375011519,
+          "busy_total_s": 5.841617,
+          "overlap_raw": 0.9682849518580605,
+          "gen_tokens": 1024,
+          "agg_decode_tps": 169.7344743249436,
+          "per_req_decode_tps": 180.1430106103108,
+          "mean_latency_s": 4.571535958515597,
+          "p_eval_tokens": 519,
+          "eval_tokens_mean": 512,
+          "load_s_max": 0.181083166,
+          "hit_token_ceiling": true,
+          "ttft_min": 0.26459829197847284,
+          "ttft_max": 3.195838499988895,
+          "ttft_spread_s": 2.931240208010422,
+          "ttfts": [
+            0.26459829197847284,
+            3.195838499988895
+          ]
+        },
+        {
+          "concurrency": 4,
+          "ok": 4,
+          "errors": [],
+          "wall_s": 11.92945637498633,
+          "busy_total_s": 11.718699,
+          "overlap_raw": 0.9823330277288875,
+          "gen_tokens": 2048,
+          "agg_decode_tps": 171.67588661409954,
+          "per_req_decode_tps": 180.24654622580277,
+          "mean_latency_s": 7.5501673542457866,
+          "p_eval_tokens": 516.25,
+          "eval_tokens_mean": 512,
+          "load_s_max": 0.187295209,
+          "hit_token_ceiling": true,
+          "ttft_min": 0.28721212499658577,
+          "ttft_max": 9.09802387500531,
+          "ttft_spread_s": 8.810811750008725,
+          "ttfts": [
+            0.28721212499658577,
+            3.258271958999103,
+            6.199010874988744,
+            9.09802387500531
+          ]
+        }
+      ],
+      "verdict": {
+        "verdict": "SERIALIZED",
+        "at_concurrency": 4,
+        "effective_concurrency": 1.0291464112148845,
+        "throughput_speedup": 1.0289691008663346
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Upstream Ollama clone used to build the patched binary (193 MB, own git repo).
+# Recreate with the commands in README.md -> "The fix, validated".
+ollama-src/
+
+# Raw ollama debug logs. The decisive lines are extracted into evidence/.
+logs/
+
+.idea/
+.DS_Store
+__pycache__/

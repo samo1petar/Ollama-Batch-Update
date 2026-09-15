@@ -1,0 +1,154 @@
+{
+  "config": {
+    "url": "http://127.0.0.1:11435",
+    "token": "",
+    "model": "qwen2.5:0.5b",
+    "concurrency": [
+      1,
+      2,
+      4
+    ],
+    "num_ctx": 4096,
+    "num_predict": 512,
+    "prompt_words": 120,
+    "endpoint": "chat",
+    "stream": true,
+    "think": false,
+    "timeout": 600.0,
+    "settle": 3.0,
+    "ctx_sweep": "",
+    "json": "results/np4_qwen25.json"
+  },
+  "server": {
+    "version": {
+      "version": "0.32.5"
+    },
+    "ps": {
+      "models": [
+        {
+          "name": "qwen3.5:0.8b-mlx",
+          "model": "qwen3.5:0.8b-mlx",
+          "size": 1465970496,
+          "digest": "12f40a7f8473c4899858c9ba4a8c1b5e675e1615294a9e2f1216220d8dfde057",
+          "details": {
+            "parent_model": "",
+            "format": "safetensors",
+            "family": "",
+            "families": null,
+            "parameter_size": "",
+            "quantization_level": "mxfp8"
+          },
+          "expires_at": "2026-09-15T11:39:17.131541+02:00",
+          "size_vram": 1465970496,
+          "context_length": 4096
+        }
+      ]
+    }
+  },
+  "runs": [
+    {
+      "num_ctx": 4096,
+      "ps": {
+        "models": [
+          {
+            "name": "qwen2.5:0.5b",
+            "model": "qwen2.5:0.5b",
+            "size": 668708371,
+            "digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "qwen2",
+              "families": [
+                "qwen2"
+              ],
+              "parameter_size": "494.03M",
+              "quantization_level": "Q4_K_M"
+            },
+            "expires_at": "2026-09-15T11:41:07.113524+02:00",
+            "size_vram": 668708371,
+            "context_length": 4096
+          }
+        ]
+      },
+      "levels": [
+        {
+          "concurrency": 1,
+          "ok": 1,
+          "errors": [],
+          "wall_s": 1.717820624995511,
+          "busy_total_s": 1.643312,
+          "overlap_raw": 0.9566260738104099,
+          "gen_tokens": 512,
+          "agg_decode_tps": 298.0520739767797,
+          "per_req_decode_tps": 319.27783345046424,
+          "mean_latency_s": 1.717820624995511,
+          "p_eval_tokens": 535,
+          "eval_tokens_mean": 512,
+          "load_s_max": 0.072202417,
+          "hit_token_ceiling": true,
+          "ttft_min": 0.11431725000147708,
+          "ttft_max": 0.11431725000147708,
+          "ttft_spread_s": null,
+          "ttfts": [
+            0.11431725000147708
+          ]
+        },
+        {
+          "concurrency": 2,
+          "ok": 2,
+          "errors": [],
+          "wall_s": 2.2414108749944717,
+          "busy_total_s": 4.286022,
+          "overlap_raw": 1.912198271104833,
+          "gen_tokens": 1024,
+          "agg_decode_tps": 456.85510471279645,
+          "per_req_decode_tps": 253.76837757576706,
+          "mean_latency_s": 2.2395242500060704,
+          "p_eval_tokens": 541.5,
+          "eval_tokens_mean": 512,
+          "load_s_max": 0.092961833,
+          "hit_token_ceiling": true,
+          "ttft_min": 0.2149225420143921,
+          "ttft_max": 0.2299430840066634,
+          "ttft_spread_s": 0.015020541992271319,
+          "ttfts": [
+            0.2149225420143921,
+            0.2299430840066634
+          ]
+        },
+        {
+          "concurrency": 4,
+          "ok": 4,
+          "errors": [],
+          "wall_s": 3.0060257500153966,
+          "busy_total_s": 11.326563,
+          "overlap_raw": 3.767952752880439,
+          "gen_tokens": 2048,
+          "agg_decode_tps": 681.2982224086105,
+          "per_req_decode_tps": 190.09848241370133,
+          "mean_latency_s": 3.0016951145080384,
+          "p_eval_tokens": 543,
+          "eval_tokens_mean": 512,
+          "load_s_max": 0.101081292,
+          "hit_token_ceiling": true,
+          "ttft_min": 0.23530533397570252,
+          "ttft_max": 0.3631409999798052,
+          "ttft_spread_s": 0.12783566600410268,
+          "ttfts": [
+            0.23530533397570252,
+            0.31750704199657775,
+            0.31781054197927006,
+            0.3631409999798052
+          ]
+        }
+      ],
+      "verdict": {
+        "verdict": "BATCHING",
+        "at_concurrency": 4,
+        "effective_concurrency": 3.9387937001048074,
+        "throughput_speedup": 2.285836207473223
+      }
+    }
+  ]
+}
